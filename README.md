@@ -60,3 +60,17 @@ ng add @angular-architects/module-federation --project mfe-app --port 4300 --typ
 ng g c home --project host-app
 
 ```
+
+## Creating a module and component inside mfe-app to expose it to host-app
+
+```
+ng g m todo-list --project mfe-app
+
+```
+
+```
+ng g c todo-list --project mfe-app
+
+```
+
+
