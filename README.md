@@ -53,3 +53,10 @@ ng add @angular-architects/module-federation --project host-app --port 4200 --ty
 ng add @angular-architects/module-federation --project mfe-app --port 4300 --type remote
 
 ```
+
+## Creating a component inside host-app
+
+```
+ng g c home --project host-app
+
+```
