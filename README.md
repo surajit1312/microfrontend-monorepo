@@ -74,3 +74,45 @@ ng g c todo-list --project mfe-app
 ```
 
 
+## Exposing remote application 'mfe-app' to host application 'host-app'
+### In mfe-app, webpack.config.js modify 'exposes' attribute 'TodoListModule' as defined in host-app routes as shown below:
+
+```
+
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+
+  name: 'mfe-app',
+
+  exposes: {
+    './TodoListModule': './projects/mfe-app/src/app/todo-list/todo-list.module.ts',
+  },
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});
+
+```
+
+### In host-app, webpack.config.js looks like below:
+
+```
+
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+
+  remotes: {
+    "mfe-app": "http://localhost:4300/remoteEntry.js",    
+  },
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});
+
+```
